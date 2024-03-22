@@ -26,12 +26,6 @@ module.exports = {
         message: 'scssファイルを作成しますか？',
         initial: true
       },
-      {
-        type: 'confirm',
-        name: 'have_hooks',
-        message: 'hooks等を格納するファイルを作成しますか？',
-        initial: false
-      },
     ]
     return inquirer
       .prompt(questions)
@@ -39,11 +33,9 @@ module.exports = {
         const { category, component_name, dir } = answers
         const path = `${category}/${ dir ? `${dir}/` : `` }${component_name}`
         const abs_path = category === "pages" ? `src/${path}` : `src/components/${path}`
-        const type_annotate = 'React.FC'
-        const props = '()'
         const tag = args.tag ? args.tag : 'div'
         const upperSingleCategory = category.charAt(0).toUpperCase() + category.slice(1, -1)
-        return { ...answers, path, abs_path, type_annotate, props, tag,
+        return { ...answers, path, abs_path, tag,
           upperTag: tag.charAt(0).toUpperCase() + tag.slice(1),
           upperSingleCategory
         }
